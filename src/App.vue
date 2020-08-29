@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-container>
+        <v-row class="align-center">
+          <v-col cols="10">
+            <h1>Beer App</h1>
+          </v-col>
+          <v-col cols="2">
+            <span>Menu placeholder</span>
+          </v-col>
+        </v-row>
+      </v-container>
+      
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+    <v-footer color="primary lighten-1" padless>
+      <v-container>
+        <v-row>
+          <v-col cols="12">
+            <span>test something</span>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+//import HelloWorld from "./components/HelloWorld";
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: "App",
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  //components: {
+  //  HelloWorld
+  //},
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    //
+  })
+};
+</script>
