@@ -1,7 +1,17 @@
 <template>
-  <div>
-    <p>Do we want a beer? {{ beer.beerName }}</p>
-  </div>
+  <v-container>
+    <v-row class="beer-card -shadow">
+      <v-col>
+        <img :src="beer.image_url" :alt="beer.name" width="50">
+      </v-col>
+      <v-col>
+        <p class="title"> {{ beer.name }} </p>
+        <p class="tagline"> {{ beer.tagline }} </p>
+        <p> {{ beer.abv }}% </p>
+        <p> {{ beer.description }}</p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -11,3 +21,23 @@ export default {
 
 };
 </script>
+
+<style scoped>
+
+.beer-card{
+  padding: 20px;
+  margin-bottom: 24px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.beer-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.beer-card > .title {
+  margin: 0;
+}
+.beer-card > .tagline {
+  font-style: italic;
+}
+</style>

@@ -11,20 +11,32 @@
 //import HelloWorld from "@/components/HelloWorld.vue";
 
 import BeerCard from "@/components/BeerCard.vue";
+import BeerService from "@/services/BeerService.js"
 
 export default {
   name: "BeerList",
   components: { BeerCard },
   data: () => ({
      beers: [
-         {
-             beerName: 'beer1'
-         },
-         {
-             beerName: 'beer2'
-         }
-     ]
-  })
+
+     ],
+     perPage: 4
+  }),
+  created() {
+    BeerService.getBeers(this.perPage,this.page).then( response => {
+        console.log(response)
+        this.beers = response.data
+    }).catch( error => {
+    console.log(error);
+    });
+  },
+  computed: {
+      page() {
+      // What page we're currently on
+      console.log('Page: ' + parseInt(this.$route.query.page))
+      return parseInt(this.$route.query.page) || 1
+    }
+  }
 
 
 };
