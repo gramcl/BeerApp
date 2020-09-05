@@ -1,9 +1,9 @@
 <template>
-  <div class="about">
+  <v-container>
     <h1>This is a beer list (eventually)</h1>
     <!--<BeerCard></BeerCard>-->
     <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer"></BeerCard>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
 //import HelloWorld from "@/components/HelloWorld.vue";
 
 import BeerCard from "@/components/BeerCard.vue";
-import BeerService from "@/services/BeerService.js"
+import BeerService from "@/services/BeerService.js";
 
 export default {
   name: "BeerList",
