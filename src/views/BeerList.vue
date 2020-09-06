@@ -1,8 +1,13 @@
 <template>
   <v-container>
-    <h1>This is a beer list (eventually)</h1>
-    <!--<BeerCard></BeerCard>-->
-    <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer"></BeerCard>
+    <v-row>
+      <v-col cols="12">
+        <h1>This is a beer list (eventually)</h1>
+          <!--<BeerCard></BeerCard>-->
+          <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer"></BeerCard>
+
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
