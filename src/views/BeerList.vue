@@ -48,6 +48,7 @@ export default {
   created() {
     BeerService.getBeers(this.perPage,this.page).then( response => {
         console.log(response)
+        console.log(parseInt(response.headers['x-total-count']))
         this.beers = response.data
     }).catch( error => {
     console.log(error);
@@ -60,6 +61,7 @@ export default {
       return parseInt(this.$route.query.page) || 1
       },
       hasNextPage() {
+        //return this.event.eventCount > this.page * this.perPage
         return true;
       }
   }
