@@ -4,7 +4,7 @@
       <v-col cols="12">
         <h1>This is a beer list (eventually)</h1>
           <!--<BeerCard></BeerCard>-->
-          <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer"></BeerCard>
+          <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
 
       </v-col>
     </v-row>
@@ -57,8 +57,8 @@ export default {
   computed: {
       page() {
       // What page we're currently on
-      console.log('Page: ' + parseInt(this.$route.query.page))
-      return parseInt(this.$route.query.page) || 1
+        console.log('Page: ' + parseInt(this.$route.query.page))
+        return parseInt(this.$route.query.page) || 1
       },
       hasNextPage() {
         //return this.event.eventCount > this.page * this.perPage

@@ -3,6 +3,7 @@
     <v-container>
         <BeerCard :beer="beer"></BeerCard> 
         <!--<p> {{ beer.description  }} </p> test test-->
+        {{ this.page }}
     </v-container>
 
 </template>
@@ -15,7 +16,7 @@ import BeerService from "@/services/BeerService.js";
 export default {
     name: "BeerShow",
     components: { BeerCard },
-    props: ['id'],
+    props: ['id', 'page'],
     data: () => ({
         beer: {}
     }),

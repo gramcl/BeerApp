@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <router-link :to="{ name: 'BeerShow', params: { id: beer.id }}">
+    <router-link :to="{ name: 'BeerShow', params: { id: beer.id, page: page }}">
       <v-row class="beer-card -shadow" >
         <v-col class="beer-image" cols="12" sm="6">
           <img :src="beer.image_url" :alt="beer.name" width="50">
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: "BeerCard",
-  props: { beer: Object },
+  props: { beer: Object, page: Number },
 
 };
 </script>
