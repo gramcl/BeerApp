@@ -2,7 +2,7 @@
 
     <v-container>
         <BeerCard :beer="beer"></BeerCard> 
-        <!--<p> {{ beer.description  }} </p> test-->
+        <!--<p> {{ beer.description  }} </p> test test-->
     </v-container>
 
 </template>
