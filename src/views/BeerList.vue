@@ -8,6 +8,24 @@
 
       </v-col>
     </v-row>
+
+    <template v-if="page != 1">
+      <router-link
+        :to="{ name: 'BeerList', query: { page: page - 1 } }"
+        rel="prev"
+      >
+        Prev Page</router-link
+      >
+      <template v-if="hasNextPage"> | </template>
+    </template>
+    <router-link
+      v-if="hasNextPage"
+      :to="{ name: 'BeerList', query: { page: page + 1 } }"
+      rel="next"
+    >
+    Next Page</router-link
+    >
+
   </v-container>
 </template>
 
@@ -40,7 +58,10 @@ export default {
       // What page we're currently on
       console.log('Page: ' + parseInt(this.$route.query.page))
       return parseInt(this.$route.query.page) || 1
-    }
+      },
+      hasNextPage() {
+        return true;
+      }
   }
 
 

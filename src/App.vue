@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view></router-view>
+      <router-view :key="$route.fullPath" />
     </v-main>
     <v-footer color="primary lighten-1" padless>
       <v-container>
