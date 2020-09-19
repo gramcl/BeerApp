@@ -36,6 +36,7 @@ const routes = [
     props: true
   // component: () =>
   //    import(/* webpackChunkName: "about" */ "../views/BeerShow.vue")
+  // testing something
   }
 ];
 
