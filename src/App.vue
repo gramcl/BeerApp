@@ -4,7 +4,8 @@
       <v-container>
         <v-row class="align-center">
           <v-col cols="10">
-            <h1>Beer App</h1>
+            <router-link :to="{ name: 'BeerList'}"><h1>Beer App</h1></router-link>
+            <!-- need to have a look at vuetify colors -->
           </v-col>
           <v-col cols="2">
             <span>Menu placeholder</span>
@@ -44,3 +45,11 @@ export default {
   })
 };
 </script>
+
+<style scoped>
+
+h1 {
+  color: white;
+}
+
+</style>
