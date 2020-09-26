@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>This is a beer list (eventually)</h1>
+        <h1>This is a beer list (eventually)  -- Also need a search on name and ingredients</h1>
           <!--<BeerCard></BeerCard>-->
           <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
 
