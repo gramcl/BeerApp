@@ -5,7 +5,7 @@
         <v-col class="beer-image" cols="12" sm="6">
           <img :src="beer.image_url" :alt="beer.name" width="50">
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col class="beer-text" cols="12" sm="6">
           <p class="title"> {{ beer.name }} </p>
           <p class="tagline"> {{ beer.tagline }} </p>
           <p> {{ beer.abv }}% </p>
@@ -44,5 +44,9 @@ export default {
 }
 .beer-image {
   text-align:center;
+}
+div a {
+    color: black;
+    text-decoration:none;
 }
 </style>

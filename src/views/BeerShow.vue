@@ -2,6 +2,11 @@
 
     <v-container>
 
+      <v-row>
+          <router-link :to="{ name: 'BeerList', query: { page: page } }">
+            <v-icon>mdi-chevron-left</v-icon>
+          </router-link>
+      </v-row>
       <v-row class="beer-card -shadow" >
         <v-col class="beer-image" cols="12" sm="6">
           <img :src="beer.image_url" :alt="beer.name" width="50">
@@ -16,6 +21,8 @@
           <p>Hops</p>
           <p>Yeast</p>
         </v-col>
+
+        {{ this.page }}
       </v-row>
 
     </v-container>
@@ -25,6 +32,7 @@
 <script>
 
 import BeerService from "@/services/BeerService.js";
+
 
 export default {
     name: "BeerShow",
