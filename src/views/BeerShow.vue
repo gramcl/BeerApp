@@ -16,10 +16,37 @@
           <p class="tagline"> {{ beer.tagline }} </p>
           <p> ABV: {{ beer.abv }}% </p>
           <p> {{ beer.description }}</p>
-          <p>Ingredients:</p>
-          <p>Malt</p>
-          <p>Hops</p>
-          <p>Yeast</p>
+
+          <div class="ingredients" v-if="beer.ingredients">
+            <p class="title">Ingredients:</p>
+            <template v-if="beer.ingredients.malt">
+                <p>Malt:</p>
+                <ul>
+                    <li v-for="malt in beer.ingredients.malt" :key="malt.id">
+                        {{ malt.name }}
+                    </li>
+                </ul>
+            </template>
+
+
+
+            <template v-if="beer.ingredients.hops">
+                <p>Hops:</p>
+                <ul>
+                    <li v-for="hops in beer.ingredients.hops" :key="hops.id">
+                        {{ hops.name }}
+                    </li>
+                </ul>
+            </template>
+
+            <template v-if="beer.ingredients.yeast">
+                <p>Yeast:</p>
+                <p> {{ beer.ingredients.yeast }} </p>
+            </template>
+
+          </div>
+
+
         </v-col>
 
         {{ this.page }}
@@ -54,3 +81,16 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.ingredients p {
+    margin-bottom: 10px;
+}
+.ingredients ul {
+    margin-bottom: 20px;
+}
+.ingredients p:last-child {
+    margin-bottom: 16px;
+}
+
+</style>
