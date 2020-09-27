@@ -8,8 +8,17 @@
             <router-link :to="{ name: 'BeerList'}"><h1>Beer App</h1></router-link>
             <!-- need to have a look at vuetify colors -->
           </v-col>
-          <v-col cols="2">
-            <span>Menu placeholder</span>
+          <v-col cols="2" style="text-align: right;">
+            <span class="px-4">
+              <router-link :to="{ name: 'BeerList'}">
+                <v-icon>mdi-cart</v-icon>
+              </router-link>
+            </span>
+            <span class="px-4">
+              <router-link :to="{ name: 'BeerList'}">
+                <v-icon>mdi-menu</v-icon>
+              </router-link>
+            </span>
           </v-col>
         </v-row>
       </v-container>

@@ -34,7 +34,7 @@
                 <p>Hops:</p>
                 <ul>
                     <li v-for="hops in beer.ingredients.hops" :key="hops.id">
-                        {{ hops.name }}
+                        {{ hops.name }} - {{ hops.add }}
                     </li>
                 </ul>
             </template>
@@ -91,6 +91,9 @@ export default {
 }
 .ingredients p:last-child {
     margin-bottom: 16px;
+}
+.beer-image {
+    text-align: center;
 }
 
 </style>
