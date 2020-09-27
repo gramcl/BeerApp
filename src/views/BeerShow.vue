@@ -1,15 +1,23 @@
 <template>
     <div>
         <div class="secondary-nav">
-            <router-link :to="{ name: 'BeerList', query: { page: page } }">
-                <v-icon>mdi-chevron-left</v-icon>
-            </router-link>
-            <v-btn
-                icon
-                @click="addToList = true"
-               >
-                <v-icon>mdi-heart-outline</v-icon>
-            </v-btn>
+            <v-container>
+                <v-row class="align-center justify-sm-space-between">
+                    <v-col cols="2">
+                        <router-link :to="{ name: 'BeerList', query: { page: page } }">
+                            <v-icon>mdi-chevron-left</v-icon>Back to list
+                        </router-link>
+                    </v-col>
+                    <v-col cols="1">
+                        <v-btn
+                            icon
+                            @click="toggleLike"
+                        >
+                            <v-icon> {{ addToList ? 'mdi-heart' : 'mdi-heart-outline' }} </v-icon>
+                        </v-btn>
+                    </v-col>
+                </v-row>
+            </v-container>
         </div>
         <v-container>   
         <v-row class="beer-card -shadow" >
@@ -82,7 +90,13 @@ export default {
         }).catch( error => {
         console.log(error);
         });
-    }
+    },
+    methods: {
+        toggleLike() {
+            this.addToList = !this.addToList;
+            console.log(this.addToList);
+        }
+  }
 
 
 
@@ -102,8 +116,9 @@ export default {
 .beer-image {
     text-align: center;
 }
-.secondary-nav {
-    background-color: #CDCDCD;
+.secondary-nav a {
+    text-decoration:none;
+
 }
 
 </style>
