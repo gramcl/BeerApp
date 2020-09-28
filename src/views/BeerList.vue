@@ -1,10 +1,24 @@
 <template>
   <v-container>
+    <v-row class="search-items">
+      <v-col sm="3" cols="12">
+        <v-text-field v-model="message" label="Search Term"></v-text-field>
+      </v-col>
+      <v-col sm="2" cols="12">
+        <v-select
+          :items="items"
+          label="Ingredient"
+          v-model="selected"
+        ></v-select>
+      </v-col>
+      <v-col sm="1" cols="12">
+        <v-btn icon color="primary"><v-icon>mdi-magnify</v-icon></v-btn>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col cols="12">
-        <h1>This is a beer list (eventually)  -- Also need a search on name and ingredients</h1>
           <!--<BeerCard></BeerCard>-->
-          <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
+        <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
 
       </v-col>
     </v-row>
@@ -43,7 +57,10 @@ export default {
      beers: [
 
      ],
-     perPage: 4
+     perPage: 4,
+     message: '',
+     selected: '',
+     items: ['Hops', 'Malt', 'Yeast']
   }),
   created() {
     BeerService.getBeers(this.perPage,this.page).then( response => {
@@ -70,3 +87,12 @@ export default {
 };
 
 </script>
+
+<style scoped>
+.search-items {
+  justify-content: center;
+}
+.row {
+  align-items: center;
+}
+</style>
