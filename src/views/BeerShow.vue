@@ -80,7 +80,7 @@ export default {
     props: ['id', 'page'],
     data: () => ({
         beer: {},
-        addToList: false
+        addToList: false //test
     }),
     created() {
         BeerService.getBeer(this.id).then( response => {
