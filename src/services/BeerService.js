@@ -10,8 +10,8 @@ const apiClient = axios.create({
 })
 
 export default {
-    getBeers(perPage, page) {
-      return apiClient.get('/beers?per_page=' + perPage + '&page=' + page)
+    getBeers(perPage, page, searchUrl='') {
+      return apiClient.get('/beers?per_page=' + perPage + '&page=' + page + '&' + searchUrl)
     },
 
     getBeer(id){
@@ -21,4 +21,5 @@ export default {
     randomiseBeer(){
       return apiClient.get('/beers/random')
     }
+    
 }

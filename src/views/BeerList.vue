@@ -12,7 +12,7 @@
         ></v-select>
       </v-col>
       <v-col sm="1" cols="12">
-        <v-btn icon color="primary"><v-icon>mdi-magnify</v-icon></v-btn>
+        <v-btn icon color="primary" @click="searchBeer"><v-icon>mdi-magnify</v-icon></v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -81,6 +81,20 @@ export default {
         //return this.event.eventCount > this.page * this.perPage
         return true;
       }
+  },
+  methods: {
+    searchBeer() {
+        let searchUrl = this.selected.toLowerCase() + '=' + this.message.toLowerCase()
+        console.log(searchUrl)
+
+        BeerService.getBeers(this.perPage,this.page, searchUrl).then( response => {
+          console.log(response)
+          console.log(parseInt(response.headers['x-total-count']))
+          this.beers = response.data
+        }).catch( error => {
+            console.log(error);
+        });
+    }
   }
 
 
