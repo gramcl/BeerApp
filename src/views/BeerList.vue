@@ -61,8 +61,8 @@ export default {
 
      ],
      perPage: 4,
-     message: 'test',
-     selected: 'hops',
+     message: '',
+     selected: '',
      items: ['Hops', 'Malt', 'Yeast']
   }),
   created() {
