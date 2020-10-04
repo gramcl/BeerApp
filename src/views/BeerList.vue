@@ -15,6 +15,9 @@
         <v-btn icon color="primary" @click="searchBeer"><v-icon>mdi-magnify</v-icon></v-btn>
       </v-col>
     </v-row>
+    <v-row class="search-results">
+      <v-col sm="3" cols="12">Search Results</v-col>
+    </v-row>
     <v-row>
       <v-col cols="12">
           <!--<BeerCard></BeerCard>-->
@@ -58,15 +61,16 @@ export default {
 
      ],
      perPage: 4,
-     message: '',
-     selected: '',
+     message: 'test',
+     selected: 'hops',
      items: ['Hops', 'Malt', 'Yeast']
   }),
   created() {
-    BeerService.getBeers(this.perPage,this.page).then( response => {
+    BeerService.getBeers(this.perPage,this.page, this.searchParams).then( response => {
         console.log(response)
         console.log(parseInt(response.headers['x-total-count']))
         this.beers = response.data
+        console.log("Response length: " + this.beers.length)
     }).catch( error => {
     console.log(error);
     });
@@ -80,14 +84,16 @@ export default {
       hasNextPage() {
         //return this.event.eventCount > this.page * this.perPage
         return true;
+      },
+      searchParams(){
+        return this.selected.toLowerCase() + '=' + this.message.toLowerCase()
       }
   },
   methods: {
     searchBeer() {
-        let searchUrl = this.selected.toLowerCase() + '=' + this.message.toLowerCase()
-        console.log(searchUrl)
 
-        BeerService.getBeers(this.perPage,this.page, searchUrl).then( response => {
+        console.log(this.searchParams)
+        BeerService.getBeers(this.perPage,this.page, this.searchParams).then( response => {
           console.log(response)
           console.log(parseInt(response.headers['x-total-count']))
           this.beers = response.data
@@ -103,7 +109,7 @@ export default {
 </script>
 
 <style scoped>
-.search-items {
+.search-items, .search-results {
   justify-content: center;
 }
 .row {
