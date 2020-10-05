@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="search-items">
       <v-col sm="3" cols="12">
-        <v-text-field v-model="message" label="Search Term"></v-text-field>
+        <v-text-field v-model="searchText" label="Search Term"></v-text-field>
       </v-col>
       <v-col sm="2" cols="12">
         <v-select
@@ -15,20 +15,30 @@
         <v-btn icon color="primary" @click="searchBeer"><v-icon>mdi-magnify</v-icon></v-btn>
       </v-col>
     </v-row>
-    <v-row class="search-results">
-      <v-col sm="3" cols="12">Search Results</v-col>
+    <v-row v-if="displaySearchResults" class="search-results">
+      <v-col class="col-sm-6 col-12">
+        <v-card>
+          <v-card-title>Search Results</v-card-title>
+          <v-card-text>Some interesting results</v-card-text>
+        </v-card>
+      </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
           <!--<BeerCard></BeerCard>-->
-        <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
+        <template v-if="beers.length">
+          <BeerCard v-for="beer in beers" :key="beer.id" :beer="beer" :page="page"></BeerCard>
+        </template>
+        <div class="results" v-else>
+          <p>There are no beers that match your search.</p>
+        </div>
 
       </v-col>
     </v-row>
 
     <template v-if="page != 1">
       <router-link
-        :to="{ name: 'BeerList', query: { page: page - 1 } }"
+        :to="{ name: 'BeerList', query: { page: page - 1 }, params: {searchProp: this.calcSearchTerm, itemProp: this.calcSearchSelected } }"
         rel="prev"
       >
         Prev Page</router-link
@@ -37,7 +47,7 @@
     </template>
     <router-link
       v-if="hasNextPage"
-      :to="{ name: 'BeerList', query: { page: page + 1 } }"
+      :to="{ name: 'BeerList', query: { page: page + 1 }, params: {searchProp: this.calcSearchTerm, itemProp: this.calcSearchSelected } }"
       rel="next"
     >
     Next Page</router-link
@@ -56,13 +66,18 @@ import BeerService from "@/services/BeerService.js";
 export default {
   name: "BeerList",
   components: { BeerCard },
+  props: {
+    searchProp: String,
+    itemProp: String
+  },
   data: () => ({
      beers: [
 
      ],
      perPage: 4,
-     message: '',
+     searchText: '',
      selected: '',
+     displaySearchResults: false,
      items: ['Hops', 'Malt', 'Yeast']
   }),
   created() {
@@ -85,8 +100,19 @@ export default {
         //return this.event.eventCount > this.page * this.perPage
         return true;
       },
+      calcSearchSelected() {
+        return ((this.itemProp && this.itemProp.length) ? this.itemProp : this.selected)
+      },
+      calcSearchTerm() {
+        return ((this.searchProp && this.itemProp.length) ? this.searchProp : this.searchText)
+      },
       searchParams(){
-        return this.selected.toLowerCase() + '=' + this.message.toLowerCase()
+        if(this.calcSearchSelected.length && this.calcSearchTerm.length) {
+          return this.calcSearchSelected.toLowerCase() + '=' + this.calcSearchTerm.toLowerCase()
+        }
+        else {
+          return null
+        }
       }
   },
   methods: {
@@ -97,6 +123,7 @@ export default {
           console.log(response)
           console.log(parseInt(response.headers['x-total-count']))
           this.beers = response.data
+          this.displaySearchResults = true
         }).catch( error => {
             console.log(error);
         });
@@ -114,5 +141,8 @@ export default {
 }
 .row {
   align-items: center;
+}
+.results {
+  text-align: center;
 }
 </style>

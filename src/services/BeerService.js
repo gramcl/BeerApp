@@ -12,7 +12,7 @@ const apiClient = axios.create({
 export default {
     getBeers(perPage, page, searchUrl='') {
       let url = '/beers?per_page=' + perPage + '&page=' + page
-      if(searchUrl !== "") { url += '&' + searchUrl }
+      if(searchUrl) { url += '&' + searchUrl }
       console.log(url)
       return apiClient.get(url)
     },
