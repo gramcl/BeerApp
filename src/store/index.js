@@ -5,22 +5,26 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    /*searchText: '',
-    selected: '',*/
+    /*searchText: '', */
+    beers: []
   },
   mutations: {
- /*   SET_SEARCH_TEXT(state, searchText) {
-      state.searchText = searchText
+    PUSH(state, beer) {
+      state.beers.push({ beer })
     },
-    SET_SELECTED(state, selected) {
-      state.selected = selected
-    } */
+    DELETE(state, beerToRemove) {
+      state.beers = state.beers.filter(
+        beer => beer.beer.id !== beerToRemove.id
+      )
+    }
   },
   actions: {
-    /*
-    update({ commit }, update) {
-      commit('SET_SEARCH_TEXT', searchText)
-    } */
+    add({ commit }, beer) {
+      commit('PUSH', beer)
+    },
+    remove({ commit }, beerToRemove) {
+      commit('DELETE', beerToRemove)
+    }
   },
   modules: {}
 });

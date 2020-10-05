@@ -91,10 +91,22 @@ export default {
         console.log(error);
         });
     },
+    computed: {
+        inList() {
+            //compute whether item is in list, then style the like button accordingly
+            //why is the array saving beer.beer?
+        }
+    },
     methods: {
         toggleLike() {
             this.addToList = !this.addToList;
             console.log(this.addToList);
+            if(this.addToList){
+                this.$store.dispatch('add', {beer: this.beer} )
+            }
+            else {
+                this.$store.dispatch('remove', {beerToRemove: this.beer} )
+            }
         }
   }
 

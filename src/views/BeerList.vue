@@ -22,6 +22,7 @@
           <v-card-text>
             Showing result for "{{ this.calcSearchTerm }}" in "{{ this.calcSearchSelected }}" 
             <router-link :to="{ name: 'BeerList', params: {searchProp: '', itemProp: '' } }" >Clear results?</router-link>
+            <!--<v-btn @click="clearResults"></v-btn>-->
           </v-card-text>
         </v-card>
       </v-col>
@@ -133,6 +134,10 @@ export default {
         });
       }
     }
+    /*clearResults() {
+      this.displaySearchResults = false
+      this.$router.push({ name: 'BeerList', params: {searchProp: '', itemProp: '' } })
+    }*/
   }
 
 
