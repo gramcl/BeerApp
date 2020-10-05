@@ -15,11 +15,14 @@
         <v-btn icon color="primary" @click="searchBeer"><v-icon>mdi-magnify</v-icon></v-btn>
       </v-col>
     </v-row>
-    <v-row v-if="displaySearchResults" class="search-results">
+    <v-row v-if="this.displaySearchResults" class="search-results">
       <v-col class="col-sm-6 col-12">
         <v-card>
           <v-card-title>Search Results</v-card-title>
-          <v-card-text>Some interesting results</v-card-text>
+          <v-card-text>
+            Showing result for "{{ this.calcSearchTerm }}" in "{{ this.calcSearchSelected }}" 
+            <router-link :to="{ name: 'BeerList', params: {searchProp: '', itemProp: '' } }" >Clear results?</router-link>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -81,6 +84,7 @@ export default {
      items: ['Hops', 'Malt', 'Yeast']
   }),
   created() {
+    this.displaySearchResults = this.searchParams
     BeerService.getBeers(this.perPage,this.page, this.searchParams).then( response => {
         console.log(response)
         console.log(parseInt(response.headers['x-total-count']))
@@ -117,7 +121,7 @@ export default {
   },
   methods: {
     searchBeer() {
-
+      if(this.searchParams) {
         console.log(this.searchParams)
         BeerService.getBeers(this.perPage,this.page, this.searchParams).then( response => {
           console.log(response)
@@ -127,6 +131,7 @@ export default {
         }).catch( error => {
             console.log(error);
         });
+      }
     }
   }
 
