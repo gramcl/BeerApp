@@ -27,18 +27,18 @@
 
           <v-dialog
             v-model="dialog"
-            max-width="290"
+            max-width="400"
           >
             <v-card>
               <v-card-title class="headline">Favourite Beers</v-card-title>
 
               <v-card-text>
                 <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="4" v-for="beer in this.$store.state.beers" :key="beer.id"> 
-                      <img :src="beer.image_url" height="150" :alt="beer.name" /> 
-                    </v-col>
-                  </v-row>
+                  <v-data-table
+                    :headers="headers"
+                    :items="this.$store.state.beers"
+                    :items-per-page="5"
+                  ></v-data-table>
                   
                 </v-container>
               </v-card-text>
@@ -97,7 +97,11 @@ export default {
 
   data: () => ({
     //
-    dialog: false
+    dialog: false,
+    headers: [
+        { text: 'ID', value: 'id' },
+        { text: 'Name', value: 'name' }
+    ]
   })
 };
 </script>
