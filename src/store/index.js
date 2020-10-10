@@ -10,16 +10,17 @@ export default new Vuex.Store({
   },
   mutations: {
     PUSH(state, beer) {
-      state.beers.push({ beer })
+      state.beers.push( beer )
     },
     DELETE(state, beerToRemove) {
       state.beers = state.beers.filter(
-        beer => beer.beer.id !== beerToRemove.id
+        beer => beer.id !== beerToRemove.id
       )
     }
   },
   actions: {
     add({ commit }, beer) {
+      console.log("Item to push:" + beer.id)
       commit('PUSH', beer)
     },
     remove({ commit }, beerToRemove) {

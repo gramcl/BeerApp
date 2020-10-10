@@ -30,13 +30,20 @@
             max-width="290"
           >
             <v-card>
-              <v-card-title class="headline">Use Google's location service?</v-card-title>
+              <v-card-title class="headline">Favourite Beers</v-card-title>
 
               <v-card-text>
-                Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="4" v-for="beer in this.$store.state.beers" :key="beer.id"> 
+                      <img :src="beer.image_url" height="150" :alt="beer.name" /> 
+                    </v-col>
+                  </v-row>
+                  
+                </v-container>
               </v-card-text>
 
-              <v-card-actions>
+            <!--  <v-card-actions>
                 <v-spacer></v-spacer>
 
                 <v-btn
@@ -54,7 +61,7 @@
                 >
                   Agree
                 </v-btn>
-              </v-card-actions>
+              </v-card-actions> -->
             </v-card>
           </v-dialog>
 

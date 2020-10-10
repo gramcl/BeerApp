@@ -13,7 +13,7 @@
                             icon
                             @click="toggleLike"
                         >
-                            <v-icon> {{ addToList ? 'mdi-heart' : 'mdi-heart-outline' }} </v-icon>
+                            <v-icon> {{ inList ? 'mdi-heart' : 'mdi-heart-outline' }} </v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -79,8 +79,7 @@ export default {
     name: "BeerShow",
     props: ['id', 'page'],
     data: () => ({
-        beer: {},
-        addToList: false
+        beer: {}
     }),
     created() {
         BeerService.getBeer(this.id).then( response => {
@@ -92,20 +91,26 @@ export default {
         });
     },
     computed: {
+        myBeers() {
+            return this.$store.state.beers
+        },
         inList() {
-            //compute whether item is in list, then style the like button accordingly
-            //why is the array saving beer.beer?
-        }
+            let found = this.myBeers.find(element => element.id === this.beer.id);
+            console.log(found)
+            return found ? true:false
+        } 
+            
     },
     methods: {
         toggleLike() {
-            this.addToList = !this.addToList;
-            console.log(this.addToList);
-            if(this.addToList){
-                this.$store.dispatch('add', {beer: this.beer} )
+
+            console.log("ID: " + this.beer.id)
+            
+            if(this.inList) {
+                this.$store.dispatch('remove', this.beer )
             }
             else {
-                this.$store.dispatch('remove', {beerToRemove: this.beer} )
+                this.$store.dispatch('add', this.beer )
             }
         }
   }
