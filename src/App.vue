@@ -34,12 +34,15 @@
 
               <v-card-text>
                 <v-container>
-                  <v-data-table
-                    :headers="headers"
-                    :items="this.$store.state.beers"
-                    :items-per-page="5"
-                  ></v-data-table>
                   
+                    <v-data-table v-if="this.$store.state.beers.length > 0"
+                      :headers="headers"
+                      :items="this.$store.state.beers"
+                      :items-per-page="5"
+                    ></v-data-table>
+                  
+                    <p v-else>You haven't selected any favourite beers yet.</p>
+
                 </v-container>
               </v-card-text>
 
