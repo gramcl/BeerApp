@@ -39,7 +39,13 @@
                       :headers="headers"
                       :items="this.$store.state.beers"
                       :items-per-page="5"
-                    ></v-data-table>
+                    >
+                      <template #item.name="{ item }">
+                        <router-link @click.native="dismissDialogAndNavigate(item.id)" to="#">
+                          {{ item.name }}
+                        </router-link>
+                      </template>
+                    </v-data-table>
                   
                     <p v-else>You haven't selected any favourite beers yet.</p>
 
@@ -105,7 +111,14 @@ export default {
         { text: 'ID', value: 'id' },
         { text: 'Name', value: 'name' }
     ]
-  })
+  }),
+  methods: {
+    dismissDialogAndNavigate(id) {
+        this.dialog = false
+        console.log("Made it to method: " + id)
+        this.$router.push({ name: 'BeerShow', params: { id: id } })
+    }
+  }
 };
 </script>
 
