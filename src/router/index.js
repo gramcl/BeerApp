@@ -39,7 +39,17 @@ const routes = [
   //    import(/* webpackChunkName: "about" */ "../views/BeerShow.vue")
   // try something else
   // and another test
-  }
+  },
+  {
+    path: "/order-form",
+    name: "OrderForm",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/OrderForm.vue")
+    }
+
 ];
 
 const router = new VueRouter({
