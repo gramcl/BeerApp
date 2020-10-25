@@ -18,9 +18,7 @@
               </v-btn>
             </span>
             <span class="px-4">
-              <router-link :to="{ name: 'BeerList'}">
-                <v-icon>mdi-menu</v-icon>
-              </router-link>
+              <MainMenu></MainMenu>
             </span>
           </v-col>
 
@@ -95,14 +93,14 @@
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld";
+import MainMenu from "./components/MainMenu";
 
 export default {
   name: "App",
 
-  //components: {
-  //  HelloWorld
-  //},
+  components: {
+    MainMenu
+  },
 
   data: () => ({
     //
