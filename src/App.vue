@@ -2,13 +2,13 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <v-container>
-        <v-row class="align-center">
-          <v-col cols="10">
+      <v-container id="main-header">
+        <v-row class="align-center justify-space-between">
+          <v-col cols="4">
             <router-link :to="{ name: 'BeerList'}"><h1>Beer App</h1></router-link>
             <!-- need to have a look at vuetify colors -->
           </v-col>
-          <v-col cols="2" style="text-align: right;">
+          <v-col class="d-flex" cols="2" style="text-align: right;">
             <span class="px-4">
               <v-btn
                  icon
@@ -121,7 +121,9 @@ export default {
 </script>
 
 <style scoped>
-
+#main-header {
+  padding-bottom: 4px;
+}
 h1 {
   color: white;
 }
