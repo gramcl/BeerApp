@@ -15,6 +15,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
+          :to="item.route"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
@@ -28,10 +29,8 @@ export default {
   name: "MainMenu",
   data: () => ({
       items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        { title: 'Order Form', route: "/order-form" },
+        
       ],
     }),
 
