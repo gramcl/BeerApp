@@ -15,7 +15,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          :to="item.route"
+          :to="{name: item.route}"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
@@ -29,7 +29,8 @@ export default {
   name: "MainMenu",
   data: () => ({
       items: [
-        { title: 'Order Form', route: "/order-form" },
+        { title: 'Home', route: "BeerList" },
+        { title: 'Order Form', route: "OrderForm" },
         
       ],
     }),
