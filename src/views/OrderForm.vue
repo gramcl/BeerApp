@@ -29,25 +29,29 @@
             required
           ></v-text-field>
 
-          <div class="checkbox-grp d-flex justify-space-around">
-            <v-checkbox
-              v-model="interest"
-              value="beer"
-              label="Beer"
-            ></v-checkbox>
+          <v-card class="interests" flat>
+            <v-card-text>Please select your interests:</v-card-text>
+            <div class="checkbox-grp d-flex justify-space-around">
+              <v-checkbox
+                v-model="interest"
+                value="beer"
+                label="Beer"
+              ></v-checkbox>
 
-            <v-checkbox
-              v-model="interest"
-              value="cider"
-              label="Cider"
-            ></v-checkbox>
+              <v-checkbox
+                v-model="interest"
+                value="cider"
+                label="Cider"
+              ></v-checkbox>
 
-            <v-checkbox
-              v-model="interest"
-              value="wine"
-              label="Wine"
-            ></v-checkbox>
-          </div>
+              <v-checkbox
+                v-model="interest"
+                value="wine"
+                label="Wine"
+              ></v-checkbox>
+            </div>
+
+          </v-card>
 
           <v-radio-group
               class="delivery-method"
@@ -117,7 +121,7 @@ export default {
   }
 
   .button-area {
-    margin-top: 30px;
+    margin: 30px auto;
     text-align: center;
   }
 
@@ -129,6 +133,14 @@ export default {
 
   [role="radiogroup"] > .v-radio:first-of-type {
     margin-top:20px;
+  }
+
+  .interests .v-card__text {
+    font-size: 16px;
+  }
+
+  .interests .v-input--selection-controls {
+    margin-top: 0px;
   }
 
 @media (min-width: 420px){
