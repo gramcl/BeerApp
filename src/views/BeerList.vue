@@ -11,8 +11,11 @@
           v-model="selected"
         ></v-select>
       </v-col>
-      <v-col sm="1" cols="12">
-        <v-btn icon color="primary" @click="searchBeer"><v-icon>mdi-magnify</v-icon></v-btn>
+      <v-col sm="1" cols="12" id="searchButton">
+        <v-btn icon color="primary" @click="searchBeer">
+          <v-icon v-if="this.$vuetify.breakpoint.smAndUp">mdi-magnify</v-icon>
+          <template v-else>Search</template>
+          </v-btn>
       </v-col>
     </v-row>
     <v-row v-if="this.displaySearchResults" class="search-results">
@@ -154,5 +157,13 @@ export default {
 }
 .results {
   text-align: center;
+}
+
+@media (max-width: 600px){
+  #searchButton {
+    display: flex;
+    justify-content: space-around;
+    /*my button is also still an icon...*/
+  }
 }
 </style>
