@@ -4,7 +4,7 @@
 
       <h1>Order Form</h1>
       
-        <v-form v-model="valid">
+        <v-form id="orderform" ref="form" v-model="valid" @submit.prevent="submit">
 
           <v-text-field
             v-model="lastname"
@@ -139,16 +139,25 @@ export default {
     method: '',
     firstname: '',
     lastname: '',
-    nameRules: [],
+    nameRules: [
+      v => !!v || 'Name is required',
+      v => (v && v.length <= 20) || 'Name must be less than 10' 
+    ],
     email: '',
-    emailRules: [],
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
     date: '',
-    modal: false
+    modal: false,
 
   }),
   methods: {
     clear() {
-      return false;
+      this.$refs.form.reset()
+    },
+    submit() {
+      console.log(` ${this.firstname} ${this.lastname} ${this.email}` )
     }
   }
 
